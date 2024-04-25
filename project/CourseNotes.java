@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 public class CourseNotes {
     private File noteFile;
-    private BufferedReader br;
+    private BufferedReader reader;
+    
     public CourseNotes(File CourseDirectory){
         File notesFile = new File(CourseDirectory, CourseFolderKeys.NOTES_FILE_NAME);
         if (notesFile.exists()) {
@@ -25,7 +26,7 @@ public class CourseNotes {
         Runnable toDo = ()->{
             String line;
             try {
-                while ((line = br.readLine()) != null) {
+                while ((line = reader.readLine()) != null) {
                     toRet.add(line);
                 }
             } catch (IOException e) {
@@ -37,7 +38,7 @@ public class CourseNotes {
     } 
     private void readFileAndDo(Runnable toDoWithFile){
         try {
-            br = new BufferedReader(new FileReader(noteFile));
+            reader = new BufferedReader(new FileReader(noteFile));
             toDoWithFile.run();
         } catch (IOException e) {
             e.printStackTrace(); // Handle any IO exceptions

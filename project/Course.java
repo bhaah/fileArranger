@@ -1,33 +1,27 @@
 package project;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class Course {
     // Fields
     private String folderName;
     private File courseDirectory;
     private List<String> relatedNames;
-    private File[] filesContained;
-    private BufferedReader br;
     private CourseNotes notes; 
 
     public Course(File courseFolder) {
         courseDirectory = courseFolder;
         folderName = courseFolder.getName();
-        filesContained = courseFolder.listFiles();
         notes = new CourseNotes(courseDirectory);
         setRelatedNames();
     }
