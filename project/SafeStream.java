@@ -1,5 +1,5 @@
+package project;
 import java.util.concurrent.ConcurrentHashMap;
-
 public class SafeStream {
     // Fields
     private ConcurrentHashMap<String, String> input;
