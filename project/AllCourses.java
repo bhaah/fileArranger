@@ -42,7 +42,8 @@ public class AllCourses {
     }
 
     private void addCourseWithNumber(StringBuilder toAddIn,int courseNum){
-        String space=" ";
+        String space=" ";  
+        
         String numberPart = getNumberWithBracket(courseNum)+space;
         String courseName = courses.get(courseNum).getName();
         toAddIn.append(numberPart + courseName + "\n");
