@@ -6,9 +6,8 @@ public abstract class Action implements Runnable{
     private SafeStream stream;
 
     // Constructor
-    public Action(AllCourses courses, SafeStream stream) {
+    public Action(AllCourses courses) {
         this.courses = courses;
-        this.stream = stream;
     }
 
     // Abstract method to be implemented by subclasses

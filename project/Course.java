@@ -45,7 +45,7 @@ public class Course {
 
     // Methods
     // Add a file to the specified path
-    public void addFile(File fileToAdd, String path) {
+    public void addFile(File fileToAdd) {
         // Implementation
         String folderToAddIn = CourseFolderKeys.getRelatedFolder(fileToAdd.getName());
         try {
@@ -85,5 +85,9 @@ public class Course {
     }    
     public void removeLine(int numberToRemove) {
         notes.removeLine(numberToRemove);
+    }
+
+    public String getName() {
+        return folderName;
     }
 }
