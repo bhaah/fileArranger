@@ -5,7 +5,7 @@ public class ActionFactory {
         switch (type) {
             case "mv":
                 return new AutoMoving(allCourses);
-                break;
+                
         
             default:
                 break;
