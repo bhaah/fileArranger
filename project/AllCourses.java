@@ -114,4 +114,16 @@ public class AllCourses {
         return new File(pathToRestFiles).listFiles();
 
     }
+
+    public void moveFromRestToCourse(String fileName, int courseNumber){
+        File fileToMoveFromDownloads = new File(CourseFolderKeys.DIRECTORY_PATH+"\\"+CourseFolderKeys.REST_FILES+"\\"+fileName);
+        if(!fileToMoveFromDownloads.exists()) throw new IllegalArgumentException("file to move not found!!");
+        String pathToRestFiles = CourseFolderKeys.DIRECTORY_PATH+"/"+CourseFolderKeys.REST_FILES;
+        try {
+            Files.copy(fileToMoveFromDownloads.toPath(),new File(pathToRestFiles,fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }

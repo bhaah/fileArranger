@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class CourseNotes {
     private File noteFile;
     private BufferedReader reader;
-    
+
     public CourseNotes(File CourseDirectory){
         File notesFile = new File(CourseDirectory, CourseFolderKeys.NOTES_FILE_NAME);
         if (notesFile.exists()) {
@@ -22,7 +22,7 @@ public class CourseNotes {
     }
 
     public ArrayList<String> getSeparetedLines(){
-        ArrayList< String> toRet = new ArrayList();
+        ArrayList< String> toRet = new ArrayList<>();
         Runnable toDo = ()->{
             String line;
             try {

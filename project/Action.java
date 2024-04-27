@@ -2,8 +2,8 @@ package project;
 
 public abstract class Action implements Runnable{
     // Fields
-    private AllCourses courses;
-    private SafeStream stream;
+    protected AllCourses courses;
+    protected SafeStream stream;
 
     // Constructor
     public Action(AllCourses courses) {

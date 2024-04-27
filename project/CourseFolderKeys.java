@@ -6,9 +6,9 @@ import java.util.Map;
 
 public class CourseFolderKeys {
     private static final Map<List<String>, String> folderKeys = new HashMap<>() {{
-        put(List.of("הרצאה", "lecture", "summary", "lec", "סיכום"), "lects");
-        put(List.of("homework", "work","עבודה","בית","hw"), "homeWorks");
-        put(List.of("practice","exercise","תרגול","תרגיל"),"exercise");
+        put(List.of( "lecture", "summary", "lec"), "lects");
+        put(List.of("homework", "work","hw"), "homeWorks");
+        put(List.of("practice","exercise"),"exercise");
     }};
     public static final String REST_FILES = "restFiles";
     public static final String RELATED_NAMES_FILE_NAME="relatedNames.txt";
