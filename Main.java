@@ -6,12 +6,11 @@ import project.*;
 public class Main {
     private Boolean ActionInProgress;
     public static void main(String[] args) {
-        System.out.println("Hell o, world!");
         AllCourses allCourses = new AllCourses();
         SafeStream stream = new SafeStream();
         Boolean shouldFinish = false;
         Scanner scanner = new Scanner(System.in);
-        // System.out.println(UIResponses.Welcome);
+        System.out.println(UIResponses.Welcome);
         while(!shouldFinish){
             stream.printAndWaitForAllOutputs();
 

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class AllCourses {
@@ -33,20 +34,20 @@ public class AllCourses {
     // Methods
     // Get courses with numbers (alternative name)
     //!!!!!!!!!!!!!!!!!!!!!!! MUST CHANGE TO UI RESPONSE !!!!!!!!!!!!!!!!!!!!!!!!
-    public String getCoursesWithNums() {
-        StringBuilder theCoursesWithNumbers = new StringBuilder();
+    public List<String> getCoursesWithNums() {
+        List<String> theCoursesWithNumbers = new ArrayList<>();
         for(int courseNum = 0;courseNum<courses.size();courseNum++){
             addCourseWithNumber(theCoursesWithNumbers, courseNum);
         }
-        return theCoursesWithNumbers.toString();
+        return theCoursesWithNumbers;
     }
 
-    private void addCourseWithNumber(StringBuilder toAddIn,int courseNum){
+    private void addCourseWithNumber(List<String> toAddIn,int courseNum){
         String space=" ";  
         
         String numberPart = getNumberWithBracket(courseNum)+space;
         String courseName = courses.get(courseNum).getName();
-        toAddIn.append(numberPart + courseName + "\n");
+        toAddIn.add(numberPart + courseName + "\n");
     }
 
     private String getNumberWithBracket(int courseNum) {
