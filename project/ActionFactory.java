@@ -3,7 +3,7 @@ package project;
 public class ActionFactory {
     public static Action buildAction(String type,AllCourses allCourses){
         switch (type) {
-            case "mv":
+            case "move":
                 return new AutoMoving(allCourses);
                 
         

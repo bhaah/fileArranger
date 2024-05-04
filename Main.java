@@ -5,30 +5,28 @@ import project.*;
 
 public class Main {
     private Boolean ActionInProgress;
+
     public static void main(String[] args) {
         AllCourses allCourses = new AllCourses();
         SafeStream stream = new SafeStream();
         Boolean shouldFinish = false;
-        Scanner scanner = new Scanner(System.in);
+        KeyboardThread keyboardThread = new KeyboardThread(stream);
+        Thread keyThread = new Thread(keyboardThread);
         System.out.println(UIResponses.Welcome);
-        while(!shouldFinish){
+        keyThread.start();
+        while (stream.shouldContinue()) {
             stream.printAndWaitForAllOutputs();
-
-            String input = scanner.nextLine();
-            if(input.toLowerCase().equals("done")) shouldFinish=true;
-            else{
-                if(stream.isActionOpened()){
-                    stream.addInput(input);
-                }else{
-                    Action action = ActionFactory.buildAction(input, allCourses);
-                    System.out.println(input);
+            String actionString = stream.getNewActionRequested();
+            if(actionString!=null){
+                Action action = ActionFactory.buildAction(actionString, allCourses);
+                if(action!=null){
                     action.setStream(stream);
                     Thread threadAction = new Thread(action);
                     threadAction.start();
-                    
+                    stream.openAction();
                 }
-                
             }
+
         }
     }
 }

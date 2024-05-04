@@ -14,7 +14,7 @@ public class CourseFolderKeys {
     public static final String RELATED_NAMES_FILE_NAME="relatedNames.txt";
     public static final String NOTES_FILE_NAME = "notes.txt";
     public static final String DIRECTORY_PATH="./Courses";
-    public static final String DOWNLOADS_DIRC_PATH = "C:\\Users\\bhaah\\Downloads";
+    public static final String DOWNLOADS_DIRC_PATH = "C:\\Users\\bhaah\\myDownloads";
     public static String getRelatedFolder(String fileName){
         for (List<String> keysList : folderKeys.keySet()) {
             for (String key : keysList) {

@@ -47,7 +47,7 @@ public class AllCourses {
         
         String numberPart = getNumberWithBracket(courseNum)+space;
         String courseName = courses.get(courseNum).getName();
-        toAddIn.add(numberPart + courseName + "\n");
+        toAddIn.add(numberPart + courseName );
     }
 
     private String getNumberWithBracket(int courseNum) {
@@ -77,7 +77,7 @@ public class AllCourses {
             return true;
         }
         else {
-            moveToRestFiles(fileName);
+           // moveToRestFiles(fileName);
             return false;
         } 
     }
@@ -117,11 +117,11 @@ public class AllCourses {
     }
 
     public void moveFromRestToCourse(String fileName, int courseNumber){
-        File fileToMoveFromDownloads = new File(CourseFolderKeys.DIRECTORY_PATH+"\\"+CourseFolderKeys.REST_FILES+"\\"+fileName);
+        File fileToMoveFromDownloads = new File(CourseFolderKeys.DOWNLOADS_DIRC_PATH+"\\"+fileName);
         if(!fileToMoveFromDownloads.exists()) throw new IllegalArgumentException("file to move not found!!");
         String pathToRestFiles = CourseFolderKeys.DIRECTORY_PATH+"/"+CourseFolderKeys.REST_FILES;
         try {
-            Files.copy(fileToMoveFromDownloads.toPath(),new File(pathToRestFiles,fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(fileToMoveFromDownloads.toPath(),new File(CourseFolderKeys.DOWNLOADS_DIRC_PATH,fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

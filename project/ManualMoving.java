@@ -15,7 +15,6 @@ public class ManualMoving extends MovingAction {
     @Override
     public void run() {
         stream.addToPrint(UIResponses.StartingManualMoving(toMoveManualy, courses));
-        stream.waitForInput();
         while (!shouldFinish) {
             stream.addToPrint(UIResponses.askToMove());
             
@@ -26,6 +25,7 @@ public class ManualMoving extends MovingAction {
                 moveRequestedFile(input);
             }
         }
+        stream.closeAction();
     }
 
     private void moveRequestedFile(String input){
@@ -34,7 +34,7 @@ public class ManualMoving extends MovingAction {
         courses.moveFromRestToCourse(toMoveManualy.get(fileNumber).getName(), courseNumber);
     }
 
-    private int getCourseNumber(String input) {
+    private int getFileNumber(String input) {
         StringBuilder stringNumber= new StringBuilder();
         int index = 0;
         while(input.charAt(index)>='0'&&input.charAt(index)<='9'){
@@ -44,7 +44,7 @@ public class ManualMoving extends MovingAction {
         return Integer.parseInt(stringNumber.toString());  
     }
 
-    private int getFileNumber(String input) {
+    private int getCourseNumber(String input) {
         StringBuilder stringNumber= new StringBuilder();
         int index = input.length()-1;
         while(input.charAt(index)>='0'&&input.charAt(index)<='9'&& index>=0){

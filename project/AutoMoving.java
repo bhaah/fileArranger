@@ -15,6 +15,7 @@ public class AutoMoving extends MovingAction{
     @Override
     public void run() {
         List<File> failedFilesToMove = new ArrayList<>();
+        stream.addToPrint(UIResponses.startingAutoMoving());
         while(!shouldFinish && !downloads.isEmpty()){
             File fileToMove = downloads.remove(0);
             if(courses.checkRelationAndMove(fileToMove.getName())){
@@ -25,6 +26,7 @@ public class AutoMoving extends MovingAction{
             }
         }
         ManualMoving manualMovingToStart = new ManualMoving(failedFilesToMove,courses);
+        manualMovingToStart.setStream(stream);
         manualMovingToStart.run();
     }
     

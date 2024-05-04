@@ -27,6 +27,7 @@ public class Course {
     }
 
     private void setRelatedNames() {
+        relatedNames = new ArrayList<>();
         File relatedNamesFile = new File(courseDirectory, CourseFolderKeys.RELATED_NAMES_FILE_NAME);
         if (relatedNamesFile.exists()) {
             try (BufferedReader br = new BufferedReader(new FileReader(relatedNamesFile))) {

@@ -51,28 +51,26 @@ public class UIResponses {
     public static String StartingManualMoving(List<File> toMoveManualy, AllCourses courses) {
         StringBuilder toRet = new StringBuilder();
         toRet.append("Starting manual moving ...\n");
-        toRet.append("in the left is the files you can move , in the right is the courses");
-        toRet.append(getFilesAndCoursesStringList(toMoveManualy,courses));
+        toRet.append("in the left is the files you can move , in the right is the courses\n");
+        toRet.append(getFilesAndCoursesNames(toMoveManualy,courses));
         return toRet.toString();
     }
 
-    private static String getFilesAndCoursesStringList(List<File> files,AllCourses courses){
+    private static String getFilesAndCoursesNames(List<File> files,AllCourses courses){
         StringBuilder coursesFilesListStrings = new StringBuilder();
-        List<String> filesNames = files.stream().map(File::getName).collect(Collectors.toList());
-        Integer maxLength = 0;
-        filesNames.forEach(file->extracted(maxLength, file.length()));
-        int lineNumber = 0;
+        List<String> filesNames = getFilesNames(files);
         List<String> coursesList = courses.getCoursesWithNums();
-        
-        while(lineNumber<=Math.min(files.size(), coursesList.size())){
-            lineNumber++;
+        Integer maxLength = getMaxFileNameLength(filesNames);
+        int lineNumber = 0;
+        while(lineNumber<Math.min(files.size(), coursesList.size())){
             String fileName = filesNames.remove(0);
-            fileName = fileName + addSpace(fileName,maxLength);
-            coursesFilesListStrings.append("["+lineNumber+"]"+files.remove(0)+"|"+coursesList.remove(0)+"\n");
+            fileName = addSpace(fileName,maxLength);
+            coursesFilesListStrings.append("["+lineNumber+"]"+fileName+"|"+coursesList.remove(0)+"\n");
+            lineNumber++;
         }
-        if(filesNames.size()==0 && coursesList.size()>0){
+        if(coursesList.size()>0){
             while(!coursesList.isEmpty()) {
-                coursesFilesListStrings.append(getSpaceWithLength(maxLength+2)+"|"+coursesList.remove(0)+"\n");
+                coursesFilesListStrings.append(getSpaceWithLength(maxLength+3)+"|"+coursesList.remove(0)+"\n");
                 lineNumber++;
             }
         }
@@ -85,6 +83,20 @@ public class UIResponses {
         return coursesFilesListStrings.toString();
 
     }
+    private static List<String> getFilesNames(List<File> files) {
+        List<String> toRet = new ArrayList<>();
+        for(File file:files) toRet.add(file.getName());
+        return toRet;
+    }
+
+    private static Integer getMaxFileNameLength(List<String> filesNames) {
+        int maxLength=0;
+        for(String file:filesNames){
+            maxLength = Math.max(maxLength, file.length());
+        }
+        return maxLength;
+    }
+
     private static String getSpaceWithLength(int length){
         StringBuilder builder = new StringBuilder();
         for(int i=0;i<length;i++){
@@ -93,7 +105,7 @@ public class UIResponses {
         return builder.toString();
     }
     private static String addSpace(String fileName, Integer maxLength) {
-        return fileName+getSpaceWithLength(maxLength);
+        return fileName+getSpaceWithLength(maxLength-fileName.length());
     }
 
     private static void extracted(Integer maxLength, int file) {
@@ -101,5 +113,9 @@ public class UIResponses {
     }
     public static String askToMove() {
         return ("wich file you want to move:");
+    }
+
+    public static String startingAutoMoving() {
+        return "Starting auto moving ...";
     }
 }
