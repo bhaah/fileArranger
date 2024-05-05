@@ -15,7 +15,13 @@ public class KeyboardThread implements Runnable {
     @Override
     public void run() {
         while(!shouldTerminate){
-            stream.addInput(scanner.nextLine());
+            String input = scanner.nextLine();
+            if(input.toLowerCase().equals("done")){
+                terminate();
+                stream.terminate();
+                break;
+            }
+            stream.addInput(input);
         }
     }
 

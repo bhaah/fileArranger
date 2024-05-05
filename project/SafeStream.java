@@ -118,4 +118,8 @@ public class SafeStream {
     public boolean shouldContinue() {
         return shouldContinue;
     }
+
+    public void terminate() {
+        shouldContinue=false;
+    }
 }
