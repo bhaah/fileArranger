@@ -35,8 +35,9 @@ public abstract class MovingAction extends Action{
     }
     
     private void setLastFilesInDownloadsList(File[] allFiles){
-        int startIndex = Math.max(0, allFiles.length-numberFilesToCheck) ;
-        for (int index = startIndex;index<allFiles.length;index++) {
+       // int startIndex = Math.max(0, allFiles.length-numberFilesToCheck) ;
+       allFiles[0].t
+        for (int index = 0;index<numberFilesToCheck;index++) {
             downloads.add(allFiles[index]);
         }
     }
