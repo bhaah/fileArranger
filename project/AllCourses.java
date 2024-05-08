@@ -73,7 +73,7 @@ public class AllCourses {
     public boolean checkRelationAndMove(String fileName) {
         int relatedCourse = checkRelationCourse(fileName);
         if(relatedCourse!=-1) {
-            moveFolderFromDownloads(fileName, relatedCourse);
+            moveFromRestToCourse(fileName, relatedCourse);
             return true;
         }
         else {
@@ -121,7 +121,7 @@ public class AllCourses {
         if(!fileToMoveFromDownloads.exists()) throw new IllegalArgumentException("file to move not found!!");
         String courseName = courses.get(courseNumber).getName();
         System.out.println("moving "+ fileName + " to "+ courseName);
-        File targetFile = new File(CourseFolderKeys.courseDirc(courseName),fileName);
+        File targetFile = new File(CourseFolderKeys.courseDirc(courseName),CourseFolderKeys.getRelatedFolder(fileName)+"/"+fileName);
         try {
             Files.copy(fileToMoveFromDownloads.toPath(),targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {

@@ -14,8 +14,8 @@ public class ManualMoving extends MovingAction {
 
     @Override
     public void run() {
-        stream.addToPrint(UIResponses.StartingManualMoving(toMoveManualy, courses));
         while (!shouldFinish) {
+            stream.addToPrint(UIResponses.StartingManualMoving(toMoveManualy, courses));
             stream.addToPrint(UIResponses.askToMove());
             
             String input = stream.getInput();
@@ -31,7 +31,7 @@ public class ManualMoving extends MovingAction {
     private void moveRequestedFile(String input){
         int fileNumber = getFileNumber(input);
         int courseNumber = getCourseNumber(input);
-        courses.moveFromRestToCourse(toMoveManualy.get(fileNumber).getName(), courseNumber);
+        courses.moveFromRestToCourse(toMoveManualy.remove(fileNumber).getName(), courseNumber);
     }
 
     private int getFileNumber(String input) {

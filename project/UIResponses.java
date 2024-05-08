@@ -62,7 +62,7 @@ public class UIResponses {
         List<String> coursesList = courses.getCoursesWithNums();
         Integer maxLength = getMaxFileNameLength(filesNames);
         int lineNumber = 0;
-        while(lineNumber<Math.min(files.size(), coursesList.size())){
+        while(filesNames.size()>0&&coursesList.size()>0){
             String fileName = filesNames.remove(0);
             fileName = addSpace(fileName,maxLength);
             coursesFilesListStrings.append("["+lineNumber+"]"+fileName+"|"+coursesList.remove(0)+"\n");
@@ -76,7 +76,7 @@ public class UIResponses {
         }
         if(filesNames.size()!=0){
             while(!filesNames.isEmpty()) {
-                coursesFilesListStrings.append("|["+lineNumber+"]"+filesNames.remove(0)+"\n");
+                coursesFilesListStrings.append("["+lineNumber+"]"+filesNames.remove(0)+"\n");
                 lineNumber++;
             }
         }

@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -35,11 +37,22 @@ public abstract class MovingAction extends Action{
     }
     
     private void setLastFilesInDownloadsList(File[] allFiles){
-       // int startIndex = Math.max(0, allFiles.length-numberFilesToCheck) ;
-       allFiles[0].t
-        for (int index = 0;index<numberFilesToCheck;index++) {
+        int startIndex = Math.max(0, allFiles.length-numberFilesToCheck) ;
+        sortWithDate(allFiles);
+        for (int index = startIndex;index<allFiles.length ;index++) {
             downloads.add(allFiles[index]);
         }
+    }
+
+    private void sortWithDate(File[] toSort){
+        Comparator<File> comparator = new Comparator<File>() {
+            @Override
+            public int compare(File file1, File file2) {
+                return Long.compare(file1.lastModified(), file2.lastModified());
+            }
+        };
+        Arrays.sort(toSort,comparator);
+        
     }
 }
 
