@@ -23,5 +23,16 @@ public abstract class Action implements Runnable{
         // Implementation
         return null;
     }
+
+    public void openActionOnStream(String welcomeString){
+        stream.addToPrint("8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8\n");
+        stream.addToPrint(welcomeString);
+        stream.openAction();
+    }
+
+    public void closeActionOnStream(){
+        stream.addToPrint(">closing the action ...\n");
+        stream.closeAction();
+    }
 }
 

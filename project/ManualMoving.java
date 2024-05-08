@@ -25,7 +25,7 @@ public class ManualMoving extends MovingAction {
                 moveRequestedFile(input);
             }
         }
-        stream.closeAction();
+        closeActionOnStream();
     }
 
     private void moveRequestedFile(String input){

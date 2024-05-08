@@ -4,15 +4,14 @@ import java.util.stream.Stream;
 import project.*;
 
 public class Main {
-    private Boolean ActionInProgress;
 
     public static void main(String[] args) {
         AllCourses allCourses = new AllCourses();
         SafeStream stream = new SafeStream();
-        Boolean shouldFinish = false;
         KeyboardThread keyboardThread = new KeyboardThread(stream);
         Thread keyThread = new Thread(keyboardThread);
-        System.out.println(UIResponses.Welcome);
+        System.out.print(UIResponses.Welcome);
+        System.out.print(UIResponses.help);
         keyThread.start();
         while (stream.shouldContinue()) {
             stream.printAndWaitForAllOutputs();

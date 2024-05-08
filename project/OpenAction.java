@@ -8,6 +8,9 @@ import java.io.File;
 
 public class OpenAction extends Action{
 
+    private final String WELCOME_STRING = "which course you want to open:\n" ;
+    private String courseName = null;
+
     public OpenAction(AllCourses courses) {
         super(courses);
         //TODO Auto-generated constructor stub
@@ -15,22 +18,27 @@ public class OpenAction extends Action{
 
     @Override
     public void run() {
-        stream.addToPrint("********************************************\nwhich course you want to open?\n");
-        stream.openAction();
-        String input = stream.waitForInputAndGet();
-        String path = CourseFolderKeys.courseDirc(input);
+        openActionOnStream(WELCOME_STRING);
+        if(courseName==null) initCourseNameFromInput();
+        String path = CourseFolderKeys.courseDirc(courseName);
         File fileToOpen = new File(path);
         if(Desktop.isDesktopSupported()){
             Desktop desktop = Desktop.getDesktop();
             try{
                 desktop.open(fileToOpen);
-                stream.addToPrint(input+" is opened :)\n");
+                stream.addToPrint(courseName+" is opened :)\n");
             }catch(Exception e){
                 e.printStackTrace();
             }
         }
-        stream.closeAction();
-        stream.addToPrint("closing action...\n");
+        closeActionOnStream();
+    }
+
+    private void initCourseNameFromInput() {
+        courseName = stream.waitForInputAndGet();
+    }
+    public void initCourseNameFromExternalBuild(String name){
+        courseName = name;
     }
 
 

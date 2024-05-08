@@ -8,10 +8,12 @@ import java.util.stream.Collectors;
 
 public class UIResponses {
     // Static Fields
-    public static String Welcome="Welcome to my file arranger ...\n";
+    public static String Welcome="#################################################\n########## WELCOME TO MY FILE ARRANGER ##########\n#################################################\n";
     public static String StartingManualMoving="finishing auto moving ... \nstarting manual moving:";
-    public static String MainOptions = "you can arrange your files to the related courses using <mv>\nyou can check your notes using the word <note>";
-
+   public static String openGuide = " -open: to open course folder \n";
+    public static String notesGuide = " -note: to write or remove or check the notes for each course\n";
+    public static String movingGuid = " -move: will try to move the files according to the name of the file and start MANUAL moving\n";
+    public static String help = openGuide+notesGuide+movingGuid;
     // Static Methods
 
 
