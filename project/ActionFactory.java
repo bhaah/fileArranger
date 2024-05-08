@@ -5,8 +5,8 @@ public class ActionFactory {
         switch (type) {
             case "move":
                 return new AutoMoving(allCourses);
-                
-        
+            case "open":
+                return new OpenAction(allCourses);
             default:
                 break;
         }

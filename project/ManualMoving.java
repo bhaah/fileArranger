@@ -18,7 +18,7 @@ public class ManualMoving extends MovingAction {
             stream.addToPrint(UIResponses.StartingManualMoving(toMoveManualy, courses));
             stream.addToPrint(UIResponses.askToMove());
             
-            String input = stream.getInput();
+            String input = stream.waitForInputAndGet();
             if(input.equals("finish")){
                 shouldFinish=true;
             }else{

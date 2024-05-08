@@ -9,10 +9,9 @@ public class SafeStream {
     private ConcurrentLinkedQueue<String> input;
     private ConcurrentLinkedQueue<String> output;
     private boolean reqOpened;
-    private Action actionToRun;
     private boolean shouldContinue = true;
     private String actionStringReq;
-    private Object actionReq=new Object();
+    private Object actionReq = new Object();
 
     // Constructor
     public SafeStream() {
@@ -43,13 +42,18 @@ public class SafeStream {
     // Add input content
     public void addInput(String inputContent) {
         synchronized (input) {
-            if (inputContent.equals("done"))
+            if (inputContent.equals("done")) {
                 shouldContinue = false;
-            else if (isActionOpened()) {
+                synchronized (actionReq) {
+                    actionReq.notifyAll();
+                }
+            } else if (isActionOpened()) {
                 input.add(inputContent);
             } else {
                 actionStringReq = inputContent;
-                synchronized(actionReq){ actionReq.notifyAll();}
+                synchronized (actionReq) {
+                    actionReq.notifyAll();
+                }
             }
             input.notifyAll();
         }
@@ -91,19 +95,21 @@ public class SafeStream {
         String toRet;
         if (isActionOpened())
             return null;
-        synchronized(actionReq){try {
-            actionReq.wait();
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }}
+        synchronized (actionReq) {
+            try {
+                actionReq.wait();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
         toRet = actionStringReq;
         actionStringReq = null;
         return toRet;
 
     }
 
-    public String getInput() {
+    public String waitForInputAndGet() {
         synchronized (input) {
             while (input.size() == 0)
                 try {
@@ -120,6 +126,6 @@ public class SafeStream {
     }
 
     public void terminate() {
-        shouldContinue=false;
+        shouldContinue = false;
     }
 }
