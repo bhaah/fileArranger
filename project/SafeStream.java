@@ -86,7 +86,7 @@ public class SafeStream {
                         e.printStackTrace();
                     }
                 String toPrint = output.remove();
-                System.out.print(toPrint);
+                System.out.print(">"+toPrint);
             }
         }
     }

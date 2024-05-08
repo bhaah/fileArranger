@@ -15,6 +15,7 @@ public class OpenAction extends Action{
 
     @Override
     public void run() {
+        stream.addToPrint("********************************************\nwhich course you want to open?\n");
         stream.openAction();
         String input = stream.waitForInputAndGet();
         String path = CourseFolderKeys.courseDirc(input);
@@ -23,11 +24,13 @@ public class OpenAction extends Action{
             Desktop desktop = Desktop.getDesktop();
             try{
                 desktop.open(fileToOpen);
+                stream.addToPrint(input+" is opened :)\n");
             }catch(Exception e){
                 e.printStackTrace();
             }
         }
-
+        stream.closeAction();
+        stream.addToPrint("closing action...\n");
     }
 
 

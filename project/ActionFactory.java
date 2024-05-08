@@ -7,6 +7,8 @@ public class ActionFactory {
                 return new AutoMoving(allCourses);
             case "open":
                 return new OpenAction(allCourses);
+            case "note":
+                return new NotesAction(allCourses);
             default:
                 break;
         }
