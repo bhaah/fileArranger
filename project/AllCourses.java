@@ -119,7 +119,6 @@ public class AllCourses {
         File fileToMoveFromDownloads = new File(CourseFolderKeys.DOWNLOADS_DIRC_PATH+"\\"+fileName);
         if(!fileToMoveFromDownloads.exists()) throw new IllegalArgumentException("file to move not found!!");
         String courseName = courses.get(courseNumber).getName();
-        System.out.println("moving "+ fileName + " to "+ courseName);
         File targetFile = new File(CourseFolderKeys.courseDirc(courseName),CourseFolderKeys.getRelatedFolder(fileName)+"/"+fileName);
         try {
             Files.copy(fileToMoveFromDownloads.toPath(),targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);

@@ -18,7 +18,7 @@ public class OpenAction extends Action{
 
     @Override
     public void run() {
-        openActionOnStream(WELCOME_STRING);
+        openActionOnStream(getAppropriateWelcome());
         if(courseName==null) initCourseNameFromInput();
         String path = CourseFolderKeys.courseDirc(courseName);
         File fileToOpen = new File(path);
@@ -26,12 +26,17 @@ public class OpenAction extends Action{
             Desktop desktop = Desktop.getDesktop();
             try{
                 desktop.open(fileToOpen);
-                stream.addToPrint(courseName+" is opened :)\n");
+                stream.addToPrint(UIResponses.color(UIResponses.green, courseName+" is opened :)\n"));
             }catch(Exception e){
                 e.printStackTrace();
             }
         }
         closeActionOnStream();
+    }
+
+    private String getAppropriateWelcome() {
+        if(courseName==null) return WELCOME_STRING;
+        else return "";
     }
 
     private void initCourseNameFromInput() {

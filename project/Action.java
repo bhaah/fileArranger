@@ -26,12 +26,12 @@ public abstract class Action implements Runnable{
 
     public void openActionOnStream(String welcomeString){
         stream.addToPrint("8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8-8\n");
-        stream.addToPrint(welcomeString);
+        stream.addToPrint(UIResponses.adminSay( welcomeString));
         stream.openAction();
     }
 
     public void closeActionOnStream(){
-        stream.addToPrint(">closing the action ...\n");
+        stream.addToPrint(UIResponses.adminSay( "closing the action ...\n"));
         stream.closeAction();
     }
 }
