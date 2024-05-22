@@ -12,14 +12,16 @@ public class UIResponses {
     public static String openGuide = " -open: to open course folder \n";
     public static String notesGuide = " -note: to write or remove or check the notes for each course\n";
     public static String movingGuid = " -move: will try to move the files according to the name of the file and start MANUAL moving\n";
+    public static String deleteGuid = " -delete: will delete the file you want\n";
     public static String reset = "\u001B[0m";
     public static String red = "\u001B[31m";
     public static String green = "\u001B[32m";
     public static String yellow = "\u001B[33m";
     public static String blue = "\u001B[34m";
-    public static String help = adminSay(openGuide + notesGuide + movingGuid);
+    public static String help = adminSay(openGuide + notesGuide + movingGuid+deleteGuid);
     public static String Welcome ="#################################################\n##########"+yellow+" WELCOME TO MY FILE ARRANGER "+reset+"##########\n#################################################\n";
     // Static Methods
+    public static String askToDelete = adminSay("which file you want to delete?\n");
 
 
     public static String adminSay(String message){
@@ -108,5 +110,13 @@ public class UIResponses {
 
     public static String color(String color,String message){
         return color+message+reset;
+    }
+
+    public static String getNamesWithNumbers(List<File> filesList){
+        StringBuilder toRet = new StringBuilder();
+        for(int index = 0 ; index<filesList.size();index++){
+            toRet.append("["+index+"]"+color(blue, filesList.get(index).getName())+"\n");
+        }
+        return toRet.toString();
     }
 }

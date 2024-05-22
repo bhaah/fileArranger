@@ -9,6 +9,8 @@ public class ActionFactory {
                 return new OpenAction(allCourses);
             case "note":
                 return new NotesAction(allCourses);
+            case "delete":
+                return new DeleteAction(allCourses);
             default:
                 if(type.startsWith("open")&&type.length()>5) {
                     OpenAction toRet =  new OpenAction(allCourses);
